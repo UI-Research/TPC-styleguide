@@ -73,21 +73,44 @@
                 <ul class="nav navbar-nav">
                     <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
                     <li class="hidden">
-                        <a target="_blank" href="#page-top"></a>
+                      <a target="_blank" href="#page-top"></a>
                     </li>
                     <li>
-                     <a class="page-scroll" href="#templates">Templates</a></li>
-                    <li>
-                        <a class="page-scroll" href="#typography">Typography</a>
+                      <a class="page-scroll" href="#typography">
+                        Typography
+                      </a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#graphs">Graphs</a>
+                      <a class="page-scroll" href="#templates">
+                        Templates
+                      </a>
+                    </li>
+                    <!-- Typography with dropdown -->
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle page-scroll" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            Graphs <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#graphs-datawrapper">Datawrapper</a></li>
+                            <li><a href="#graphs-excel">Excel</a></li>
+                            <li><a href="#graphs-r">R</a></li>
+                        </ul>
+                    </li>
+  <!--                  <li>
+                      <a class="page-scroll" href="#graphs">
+                        Graphs
+                      </a>
+                    </li> 
+                    -->
+                    <li>
+                      <a class="page-scroll" href="#color">
+                        Color
+                      </a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#color">Color</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#examples">Examples</a>
+                      <a class="page-scroll" href="#examples">
+                        Examples
+                      </a>
                     </li>
                 </ul>
             </div>
@@ -115,82 +138,27 @@ These guidelines are primarily for publishing charts to the website. Minor sizin
             </div>
         </div>
     </header>
-
-
-    <!-- Templates Section -->
-    <section id="templates" class="container content-section text-center">
-    <!--from Urban's source-->
-     <div class="col-lg-12 text-center" id="templates">
-                 <div class="row doublespacer">
-                     <h1>Templates</h1>
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <p> The links below will always feature the most recent TPC templates. Please use them whenever you start a new project.
-                        <p>Also remember that if TPC is posting a publication, you need to fill out an  <a href="https://explorer.urban.org/page/4173?SearchId=0&R=">R&R </a>.
-                        <p> Note: TPC's templates have recently been updated.</p>
-                    </div>
-
-                </div>
-             </div>
-
-            <div class="row">
-                <div class="col-sm-4 portfolio-item">
-
-
-                        <img src="img/templateTiles-01.png" class="img-responsive" alt="" />
-                    <div class="caption">
-                            <div class="caption-content">
-                              <a href="templates/tpc-presentation-full.pptx">PowerPoint template (NEW 16x9 format)</a> <br>
-                                <a href="templates/Blank_TPC_Powerpoint_Template_Slides_Light.potx">PowerPoint template (4:3 light background)</a> <br>
-                                  <a href="templates/Blank_TPC_Powerpoint_Template_Slides_Dark.potx">PowerPoint template (4:3 dark background)</a><br>
-                                   <a href="templates/EditableMapforTPC.pptx">PowerPoint template (USA Map Template)</a><br>
-                                                           </div>
-                        </div>
-
-                </div>
-                <div class="col-sm-4 portfolio-item">
-
-
-                        <img src="img/templateTiles-02.png" class="img-responsive" alt="" />
-                    <div class="caption">
-                            <div class="caption-content">
-                                <a href="templates/Chart_guide.xlsx">Chart guide</a><br>
-                                <a href="templates/TPCGraphingStyle.xlam">TPC graph styles add-in</a><br>
-                                <a href="dataviz/TPC-add-in-directions.pdf">Directions to download TPC graph styles add-in</a><br>
-                                 <a href="templates/Table_Specs.pdf">Table specifications</a><br>
-                                 <a href="templates/USA_Map.ai">Map of the United States (Adobe Illustrator)</a>
-                                 <a href="templates/tile-maps_template_TPC.xlsx">Map of the United States (Microsoft Excel)</a>
-
-                            </div>
-                        </div>
-
-                </div>
-                <div class="col-sm-4 portfolio-item">
-
-
-                        <img src="img/templateTiles-03.png" class="img-responsive" alt="" />
-                    <div class="caption">
-                            <div class="caption-content">
-                                <p><a href="templates/TPC_Short_Research_Report_Template.dotx">Short research report template (>10 pages)</a><br>
-                                  <a href="templates/TPC_Long_Research_Report_Template.dotx">Long research report template (>25 pages)</a><br>
-                                  <a href="templates/TPC_Brief_1-Column_Template.dotx">One column brief template (10 pages or fewer)</a><br>
-                                  <a href="templates/TPC_Narrative_Report_Template.dotx">Narrative report tempalte</a><br>
-                                  <a href="templates/TPC_Proposal_Template.dotx"> Technical proposal template</a><br>
-                                  <a href="templates/TPC_letterhead.docx"> TPC letterhead template</a><br>
-
-                                </p>
-                                                        </div>
-                        </div>
-
-                </div>
-              </div>
-              </section>
-
-    <!-- Typography Section -->
+    
+    <section id="start-here" class="container content-section text-center">
+        <div class="col-lg-10 col-lg-offset-1">
+          <h1 style="color:#f0573e">STOP!</h1>
+          <p>Before doing anything, you <b>must</b> download TPC's font to your computer.</p>
+          <p><b>Step 1</b>: Download <a href="https://urbanorg.box.com/s/cj2gk9oqod0eq62f594tw7m7ycxjdst7">this file</a></p>
+          <p></p>
+          <img src="img/step2_install_fonts.png" width="50%" />
+          <p><b>Step 2</b>: Open the file from your downloads folder</p>
+          <p></p>
+          <img src="img/step3_install_fonts.png" width="50%" />
+          <p><b>Step 3</b>: Click "Install"</p>
+          <p>All done! If you have any questions about installing fonts, contact Lillian Hunter</p>
+        </div>
+    </section>
+<!-- Typography Section -->
     <section id="typography" class="container content-section text-center">
         <div class="row">
             <div class="col-lg-10 col-lg-offset-1">
                 <h1>Typography</h1>
-                <p>taxpolicycenter.org uses the fonts <em>Avenir LT Pro</em> and <em>Calvert</em>. When possible, those fonts should also be used to create charts. If the Avenir LT Pro font family is not installed on your computer, please <b><a href="">download the font</a></b>. If Calvert is not installed, Rockwell is a good replacement (Calvert should be used sparingly in charts as it is on the site). Good chart typography creates a hierarchy among elements and guides the reader through the visual. </p>
+                <p>taxpolicycenter.org uses the fonts <em>Avenir LT Pro</em> and <em>Calvert</em>. When possible, those fonts should also be used to create charts. If the "Avenir TPC" font family is not installed on your computer, please <b><a href="https://urbanorg.box.com/s/cj2gk9oqod0eq62f594tw7m7ycxjdst7">download the font</a></b>. Good chart typography creates a hierarchy among elements and guides the reader through the visual. </p>
 
                 <table class="type-table" border="0" cellspacing="10px" cellpadding="10px" align="left">
                     <tbody>
@@ -218,7 +186,7 @@ These guidelines are primarily for publishing charts to the website. Minor sizin
 
                         <tr>
                             <td valign="top">
-                                <p style="font-size:11px; color:#DD0806; text-transform:uppercase">Figure number</p>
+                                <p style="font-size:11px; color:#DD0806; text-transform:uppercase"><b>Figure number</b></p>
                             </td>
                             <td valign="top">
                                 <p><b>Avenir TPC (bold)</b></p>
@@ -242,10 +210,10 @@ These guidelines are primarily for publishing charts to the website. Minor sizin
 
                         <tr>
                             <td valign="top">
-                                <p style="font-size:20x;"><b>Title</b></p>
+                                <p style="font-size:20px;"><b>Title</b></p>
                             </td>
                             <td valign="top">
-                                <p>Avenir LT Pro TPC</p>
+                                <p><b>Avenir TPC (bold)</b></p>
                             </td>
                             <td valign="top">
                                 <p>20</p>
@@ -442,32 +410,194 @@ These guidelines are primarily for publishing charts to the website. Minor sizin
 
     </section>
 
+    <!-- Templates Section -->
+    <section id="templates" class="container content-section text-center">
+    <!--from Urban's source-->
+     <div class="col-lg-12 text-center" id="templates">
+                 <div class="row doublespacer">
+                     <h1>Templates</h1>
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <p>Have you submitted a <a href="https://airtable.com/appK6gouxwy0bCGsa/shrGYxMcQkzxryb3w">communications department intake form</a> for your project yet?</p>
+                        <p>The links below will always feature the most recent TPC templates. Please use them whenever you start a new project. Follow Urban's <a href="https://urbanorg.app.box.com/s/yd6p7g8wnhy06sctgrggg055wv7b06pa">guide to the publication process!</a>
+                        <p>Also remember that if TPC is posting a publication, you need to fill out an  <a href="https://explorer.urban.org/page/4173?SearchId=0&R=">R&R</a>. The R&R requires a short overview (or abstract) of your publication (See <a href="https://urbanorg.app.box.com/s/azunbhlmml61gad1cbdg29d8cuh8p7un">Urban's guide to writing abstracts/overviews</a>.)
+                        </p>
+                        <p>Note: TPC's templates have recently been updated.</p>
+                    </div>
+
+                </div>
+             </div>
+             
+             <h2>Word templates</h2>
+             <details open>
+                <summary style="list-style: revert; display: list-item;">
+                  Click to expand/collapse
+                </summary>
+                
+                <p></p>
+                <h4>Research reports and papers</h4>
+                <table class="type-table" border="0" cellspacing="10px" cellpadding="10px" align="left">
+                  <tbody>
+                    <tr>
+                      <td valign="bottom"> 
+                        <p><a href="templates/TPC_Long_Research_Report_Template.dotx">Standard Report:</a> Use for reports up to 60 pages long. Includes a table of contents, executive summary, appendixes, and an optional custom cover image.</br>
+                          <img src="img/prev_longreport.png" width="25%" />
+                        </p>
+                      </td>
+                      <td valign="bottom"> 
+                        <p><a href="https://urbanorg.app.box.com/s/954fqlx6puyj8c2n01il0qvgo8yxaz0c">Working Paper:</a> Use for preliminary findings and papers submitted to journals. Working papers do not receive standard copyediting support.<br>
+                          <img src="img/prev_workingpaper.png" width="25%" />
+                        </p>
+                      </td>
+                      <td valign = "bottom">
+                        <p>Chartbook TK</p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <br>
+                <h4>Shorter publications</h4>
+                <table class="type-table" border="0" cellspacing="10px" cellpadding="10px" align="left">
+                  <tbody>
+                    <tr>
+                      <td valign="top" style="width: 33.33%;"> 
+                        <p><a href="templates/TPC_Brief_1-Column_Template.dotx">Standard Brief (~10–20 pages):</a> Use to summarize research findings and highlight policy recommendations. Does not support a table of contents or appendixes. <br><br>
+                          <img src="img/prev_brief.png" width="100%" />
+                        </p>
+                      </td>
+                      <td valign="top" style="width: 33.33%;"> 
+                        <p><a href="">2-page fact sheet template:</a> Use only as a companion product to summarize findings from a report or brief. Does not support citations.<br><br>
+                          <img src="img/prev_brief.png" width="100%" />
+                        </p>
+                      </td>
+                      <td valign="top" style="width: 33.33%;"> 
+                        <p><a href="">Longer fact sheet template:</a> Use for short, informal, and less technical products. Similar to the two-page fact sheet template but supports notes and citations and can be a standalone product. <em>Any fact sheet longer than two pages must use this template.</em> <br>
+                          <img src="img/prev_factsheet.png" width="100%" />
+                        </p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                
+                <br>
+                <h4>Business and miscellaneous documents</h4>
+                <table class="type-table" border="0" cellspacing="10px" cellpadding="10px" align="left">
+                  <tbody>
+                    <tr>
+                      <td valign="top" style="width: 33.33%;"> 
+                        <p><a href="templates/TPC_Narrative_Report_Template.dotx">Narrative report template</a><br><br>
+                          <img src="img/prev_narrative.png" width="100%" />
+                        </p>
+                      </td>
+                      <td valign="top" style="width: 33.33%;"> 
+                        <p><a href="templates/TPC_Proposal_Template.dotx">Technical proposal template</a><br><br>
+                          <img src="img/prev_technical.png" width="100%" />
+                        </p>
+                      </td>
+                      <td valign="top" style="width: 33.33%;"> 
+                        <p><a href="templates/TPC_letterhead.docx">TPC letterhead template</a>: Use for comment letters, memos, funder communications, and similar correspondence. <br>
+                          <img src="img/prev_factsheet.png" width="100%" />
+                        </p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+             </details>
+             
+             <h2>Graphing in Excel</h2>
+             <details>
+               <summary style="list-style: revert; display: list-item;">
+                  Click to expand/collapse
+                </summary>
+                  <ul style="text-align: center;">
+                    <a href="templates/Chart_guide.xlsx">Chart guide</a><br>
+                    <a href="templates/TPCGraphingStyle.xlam">TPC graph styles add-in</a><br>
+                    <a href="dataviz/TPC-add-in-directions.pdf">Directions to download TPC graph styles add-in</a><br>
+                  </ul>
+                </details>
+             
+             <h2>Graphing in R</h2>
+             <details>
+                <summary style="list-style: revert; display: list-item;">
+                  Click to expand/collapse
+                </summary>
+                <p><a href="https://github.com/UI-Research/tpcthemes">An R package</a> that applies TPC styles to ggplot2 graphs is in development. </p>
+              </details>
+             
+             <h2>Powerpoint templates</h2>
+             <details>
+                <summary style="list-style: revert; display: list-item;">
+                  Click to expand/collapse
+                </summary>
+                  <ul style="text-align: center;">
+                    <a href="templates/tpc-presentation-full.pptx">PowerPoint template (NEW 16x9 format)</a> <br>
+                    <a href="templates/Blank_TPC_Powerpoint_Template_Slides_Light.potx">PowerPoint template (4:3 light background)</a> <br>
+                    <a href="templates/Blank_TPC_Powerpoint_Template_Slides_Dark.potx">PowerPoint template (4:3 dark background)</a><br>
+                  </ul>
+              </details>
+              
+              <h2>Mapping resources</h2>
+              <details>
+                <summary style="list-style: revert; display: list-item;">
+                  Click to expand/collapse
+                </summary>
+                  <p>The resources below are useful for one-off maps. See <a href="https://ui-research.github.io/code-library/mapping/mapping.html">Urban's mapping guide</a> for more detailed guidance.</p>
+                  <ul>
+                    <li><a href="templates/tile-maps_template_TPC.xlsx">Tile Grid Maps of the United States (Microsoft Excel)</a></li>
+                    <li><a href="templates/EditableMapforTPC.pptx">PowerPoint template (USA Map Template)</a><br></li>
+                    <li><a href="templates/USA_Map.ai">Map of the United States (Adobe Illustrator)</a></li>
+                  </ul>
+              </details>
+              </section>
+
     <!-- chart parts Section -->
     <section id="graphs" class="container content-section text-center">
         <div class="row">
             <div class="col-lg-10 col-lg-offset-1">
                 <h1>Graphs</h1>
+                <p>There are a few options for making TPC graphs...</p>
+                <section id="graphs-datawrapper">
+                <h3>Datawrapper</h3>
+                <p>"Datawrapper is an online, browser-based tool that enables users to create interactive and responsive choropleth maps. Sensitive data or data with PII should not be used" (<a href="https://ui-research.github.io/code-library/mapping/mapping.html">Urban Mapping Guide</a>.) <a href="https://www.datawrapper.de/blog/chart-types-guide">Here's</a> an overview of chart types supported in Datawrapper. Here's an example:</p>
+                
+                <iframe style="border-style:none;display:block;margin:0 auto;max-width:720px;width:100%;" title="FIGURE 4Revenue Impact of Trump&apos;s Tariffs" aria-label="Column Chart" id="datawrapper-chart-Vjhsm" src="https://datawrapper.dwcdn.net/Vjhsm/5/" scrolling="no" frameborder="0" height="432" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r,i=0;r=e[i];i++)if(r.contentWindow===a.source){var d=a.data["datawrapper-height"][t]+"px";r.style.height=d}}})}();
+                </script>
+                
+                <p>Datawrapper graphs are appropriate for web-only publications like blogs and features. Datawrapper graphs cannot be used in print or pdf publications. Contact Lillian Hunter to have graphs made with TPC styling. </p>
+                </section>
+                  
+                <section id="graphs-excel">  
+                <h3>Excel</h3>
+                <p>Excel is one of two tools for creating publication-ready TPC graphs.</p>
                 <p>The main content well on TPC publications is approximately 6.75” wide or 720px in Excel. Because Excel’s chart title and subtitle fields are limiting in terms of formatting, we use a regular text box for all the text at the top of the graphic, as well as the source and notes text at the bottom. We also include a TPC logo in the upper-right corner of the figure so that when media members copy-paste our charts into their stories, TPC’s brand is on them. If you use the add-in tool, the logo and chart parts will automatically size properly.</p>
-                <p><em>DO NOT RESIZE CHARTS.</em></p>
-                <img src="img/tpc-logo-chart.jpg"/>
-                <p>Right click and copy the logo above to use in your charts. You should not have to resize the logo. Select the chart, select edit -> paste, or use control+v, and move the logo into the upper-right corner. <b>Make sure your chart is the proper size before pasting the logo. If you resize the chart after pasting, it will distort the logo.</b></p>
+                <p><b>DO NOT RESIZE CHARTS.</b></p>
+                
                 <h4>Tips</h4>
-
                 <ul>
                     <li>The TPC graphing style add-in formats charts to a width of 6.75", so it is important to keep the data density as high as possible.  Always include a text reference to your figure to give the data context to the content of the report/brief/blog post. If your chart has only two or three values, consider a couple sentences of text to explain the figure.
                     </li><li>If you find your explanatory sentences do a better job of distilling the information, you might want to consider going without a chart.
-</li><li>Title: Keep it short and simple. Try to explain the chart in a few words. If you need to add qualifiers (e.g., years, dollars) or further clarification, use a subtitle
+</li><li>Title: Keep it short and simple. Try to explain the chart in a few words. If you need to add qualifiers (e.g., years, dollars) or further clarification, use a subtitle. For bonus credit: consider writing a title that <a href="https://policyviz.com/2018/04/12/three-ways-to-annotate-your-graphs/#google_vignette">"works as a headline"</a> and conveys the main point the reader should take away from the graph.
 </li><li>Source and Notes: This is where the technical information about methodology can go. Try to avoid putting this information in the title, labels, or on the chart.
 </li><li>Legends: Stretch legends across the top of the chart, or to the right. Order them in a logical way, mirroring the order of the data in the charts.
 </li>
                 </ul>
+                
 
-            </div>
+           
             <div class="col-lg-12">
                 <img src="img/chart-parts-02.png" width="100%" />
             </div>
-
-
+            </section>
+             
+            <section id="graphs-r">
+              <h3>R</h3>
+              <p><code>tpcthemes</code> is a set of utilities for creating TPC–themed plots and maps in R. In addition to ggplot styling, the package contains tools for wrangling common TPC datasets. The package is in development.</p>
+              <p>The package makes ggplot2 output align more closely with this style guide, but it does not produce publication-ready graphics. Visual styles must still be edited using your project’s normal editing workflow. Exporting charts as PDFs rather than image files (e.g., PNG, JPEG) will allow them to be edited more easily.</p>
+              <p>Run the following code to install or update urbnthemes:<br>
+                  <code>install.packages("remotes")<br>
+                        remotes::install_github("ui-research/tpcthemes")</code><br>
+                  You must have Github credentials configured in your R environment in order to access this package.</p>
+            </section>
+           </div>
         </div>
 
     </section>
