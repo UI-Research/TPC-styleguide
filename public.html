@@ -81,9 +81,15 @@
                       </a>
                     </li>
                     <li>
-                      <a class="page-scroll" href="#templates">
-                        Templates
+                      <a href="#" class="dropdown-toggle page-scroll" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        Templates <span class="caret"></span>
                       </a>
+                      <ul class="dropdown-menu">
+                            <li><a href="#templates-word">Word templates</a></li>
+                            <li><a href="#templates-graphsexcel">Graphing (Excel)</a></li>
+                            <li><a href="#templates-ppt">PowerPoint</a></li>
+                            <li><a href="#templates-maps">Mapping</a></li>
+                        </ul>
                     </li>
                     <!-- Typography with dropdown -->
                     <li class="dropdown">
@@ -426,12 +432,8 @@ These guidelines are primarily for publishing charts to the website. Minor sizin
 
                 </div>
              </div>
-             
+             <section id="templates-word">
              <h2 style="margin-top: 300px;">Word templates</h2>
-             <details open>
-                <summary style="list-style: revert; display: list-item;">
-                  Click to expand/collapse
-                </summary>
                 
                 <h4 style="margin-top: 50px;">Shorter publications</h4>
                 <details open>
@@ -517,10 +519,9 @@ These guidelines are primarily for publishing charts to the website. Minor sizin
                   </tbody>
                 </table>
                 </details>
-             </details>
              
              <hr class="divider"/>
-             
+             <section id="templates-graphsexcel">
              <h2 style="margin-top: 50px;">Graphing in Excel</h2>
              <details>
                <summary style="list-style: revert; display: list-item;">
@@ -532,19 +533,9 @@ These guidelines are primarily for publishing charts to the website. Minor sizin
                     <a href="templates/TPC-add-in-directions.pdf">Directions to download TPC graph styles add-in</a><br>
                   </ul>
                 </details>
-                
-                <hr class="divider"/>
-             
-             <h2 style="margin-top: 50px;">Graphing in R</h2>
-             <details>
-                <summary style="list-style: revert; display: list-item;">
-                  Click to expand/collapse
-                </summary>
-                <p><a href="https://github.com/UI-Research/tpcthemes">An R package</a> that applies TPC styles to ggplot2 graphs is in development. </p>
-              </details>
               
               <hr class="divider"/>
-             
+              <section id="templates-ppt">
              <h2 style="margin-top: 50px;">Powerpoint</h2>
              <details>
                 <summary style="list-style: revert; display: list-item;">
@@ -558,7 +549,7 @@ These guidelines are primarily for publishing charts to the website. Minor sizin
               </details>
               
               <hr class="divider"/>
-              
+               <section id="templates-maps">
               <h2 style="margin-top: 50px;">Mapping resources</h2>
               <details>
                 <summary style="list-style: revert; display: list-item;">
