@@ -4,6 +4,7 @@ project:
 website:
   title: "Tax Policy Center Style Guide"
   navbar:
+    logo: favicon.ico
     left:
       - text: "Branding"
         href: branding.qmd
