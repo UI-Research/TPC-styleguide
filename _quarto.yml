@@ -2,7 +2,7 @@ project:
   type: website
 
 website:
-  title: "Tax Policy Center Data Visualization Style Guide"
+  title: "Tax Policy Center Style Guide"
   navbar:
     left:
       - text: "Branding"
