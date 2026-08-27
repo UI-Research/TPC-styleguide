@@ -25,10 +25,11 @@ Use the navigation bar above to find what you need:
 
 - **[Branding](branding.qmd)**: Required font setup, typography guidelines (typefaces, sizes, and cases for chart elements), and TPC's color palette and selection principles (categorical and sequential color schemes for one through seven or more groups).
 - **[Publications](publications.qmd)**: Word templates for briefs, fact sheets, research reports, and business documents, plus Excel graphing resources, the PowerPoint template, and mapping resources.
-- **[Data Viz](data-viz.qmd)**: Guidance on graphing tools (Datawrapper, Excel, R) and worked examples of common chart types (bar/column, area/stacked column, line, and pie/distribution charts) with style tips and R/Excel code.
+- **[Data Viz](data-viz.qmd)**:
+   - Guidance on graphing and mapping tools (Datawrapper, Excel, R)
+   - Examples of common chart types with style tips and templates
+   - Guidance on TPC tables
 
 ---
-
-# Additional Resources
 
 Have a question or looking for more help? Contact [Lillian Hunter](mailto:LHunter@urban.org).

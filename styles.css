@@ -18,6 +18,11 @@ h1 {
   text-transform: uppercase;
 }
 
+/* Navbar background color */
+.navbar {
+  background-color: #174a7c !important;
+}
+
 /* Code/monospace remains unchanged */
 code, pre {
   font-family: 'Courier New', monospace;

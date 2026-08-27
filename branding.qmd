@@ -1,8 +1,6 @@
 ---
 title: "Branding"
 subtitle: "Tax Policy Center Data Visualization Style Guide"
-author: "Urban Institute"
-date: today
 
 twitter:
   card: "summary"
