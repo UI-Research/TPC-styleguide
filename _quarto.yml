@@ -23,7 +23,7 @@ format:
     toc-depth: 3
     toc-expand: 2
     toc-location: left
-    number-sections: TRUE
+    number-sections: FALSE
     smooth-scroll: true
     css: styles.css
     page-layout: full
