@@ -14,8 +14,8 @@ og:
   description: "This site contains guidelines that are in line with data visualization best practices and proven design principles."
 ---
 
-::::: {.callout-warning}
-## STOP! - Required Setup
+::::: {.callout-warning collapse=true}
+## STOP! - Required Font Setup
 
 Before doing anything, you **must** download TPC's font to your computer.
 
@@ -32,51 +32,184 @@ Before doing anything, you **must** download TPC's font to your computer.
 All done! If you have any questions about installing fonts, contact Lillian Hunter.
 :::::
 
-# Graphs
+# How and when to create effective graphs, maps, and charts
 
-There are a few options for making TPC graphs...
+::: {.callout-tip collapse=false}
+
+## How and when to create effective graphs, maps, and charts
+
+> This section excerpts and condenses [Urban Institute's Data Visualization Style Guide, "Creating Effective Charts."](https://urbaninstitute.github.io/graphics-styleguide/)
+
+**Ask - Do you even need a graph here?** If your chart only has two or three values, consider a couple of sentences of text to explain the figure instead. If you find your explanatory sentences do a better job of distilling the information, you might want to consider going without a chart.
+
+**Be consistent**. Once you’ve chosen blue to represent one group in one chart, make sure all other charts in your publication or slide deck use blue to represent that group as well. This consistency makes reading and comprehension easier for your reader.
+
+**Keep it simple**. Don’t try to stuff every data value into a single graph. This doesn’t mean you need to strip out all your data, but **consider what you want your reader to come away with**. 
+
+**Strategically guide your reader's eye through your chart:**
+
+- **Small multiples.** The small multiples approach is exactly what it sounds like: create a series of smaller graphs positioned in close proximity. Breaking a single larger, complex graph into smaller pieces can not only make a complex graph easier for readers to comprehend but also help create a sense of movement by aligning changes over time in a particular order. 
+   - Each multiple should be the same type, shape, and size and use the same type of scales, which should start and end at the same values. The best way to think about small multiples is to take a single, dense graph and break it up into many charts—in other words, the framing elements of the chart should not change. 
+   - Try to order the small multiple graphs in a meaningful way—for example, by some value, geographic location, or even alphabetically.
+- **Highlighting.** Highlighting can call attention to specific data points in very dense charts. The observations you want the reader to focus on should be rendered in a color that helps them stand out (usually pink or yellow at Urban), while the rest of the series are in a different color (usually blue, black, or gray). However, be selective with your use of color to highlight specific values, series, or observations, because too many colors can make it difficult to pick out the values on which you want your reader to focus.
+- **Reference lines.** There may be times when you want to include a reference line or pointer for a specific event, threshold, or benchmark. In such cases, make sure that your line is measured precisely. For example, if you are marking June 2010 in a line chart, the reference line should be located halfway between 2010 and 2011.
+
+**Use supporting text:**
+
+- Always include a text reference to your figure to explain the relevance of the chart to your argument.
+- **Title.** Keep it concise and active. Try to explain the chart in a few words. If you need to add qualifiers (e.g., years, dollars) or further clarification, use a subtitle. For bonus credit: consider writing a title that ["works as a headline"](https://policyviz.com/2018/04/12/three-ways-to-annotate-your-graphs/#google_vignette) and conveys the main point the reader should take away from the graph.
+- **Source and Notes.** This is where the technical information about methodology can go. Try to avoid putting this information in the title, labels, or on the chart.
+- **Legends.** Stretch legends across the top of the chart, or to the right. Order them in a logical way, mirroring the order of the data in the charts.
+- **Annotation.** Annotation is one of the most important ways to improve your data communication efforts. There are two primary ways to annotate your visualizations. First, adding explanatory text within the graph itself can highlight specific values or explain content. Second, you can add a layer of annotation to explain how to read the graph. This approach can be especially useful for readers who may not be familiar with a particular graph type. For example, you could add a pointer that denotes how the values get larger or smaller along each axis in a scatterplot.
+- **Data labels and markers.** When possible, avoid using legends and instead directly label the data on the graph. Endeavor to evenly space and align the labels instead of scattering them around the graph, which can make it difficult for your reader to find the label and risks emphasizing one series or data value over another. On a line chart, for example, you might place the labels at the far right of the graph, slightly outside the graph space, but left-aligned.
+
+**Avoid the following:**
+ 
+- Nonzero baselines
+- Dual axis charts
+- Pie charts with too many slices
+- Too many categories
+
+
+Refer to the Urban style guide for further elaboration on this guidance, and information on how to mark outliers, show uncertainty, and tradeoffs between comprehensibility and complexity. 
+
+**What kind of chart should I use?**
+
+```{=html}
+<table style="width: 100%; border-collapse: collapse; border: 1px solid #ddd;">
+  <thead>
+    <tr style="background-color: #f9f9f9; font-weight: bold;">
+      <th style="border: 1px solid #ddd; padding: 12px; text-align: left; width: 12%;">I want to...</th>
+      <th style="border: 1px solid #ddd; padding: 12px; text-align: left; width: 15%;"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 12px;">Compare values or rankings</td>
+      <td style="border: 1px solid #ddd; padding: 12px;">
+        <ul>
+          <li>Bar charts</li>
+          <li>Dot plots</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 12px;">Show trends or change over time</td>
+      <td style="border: 1px solid #ddd; padding: 12px;">
+        <ul>
+          <li>Area charts</li>
+          <li>Bar charts</li>
+          <li>Connected scatterplots</li>
+          <li>Dot plots</li>
+          <li>Gantt charts</li>
+          <li>Line charts</li>
+          <li>Slope charts</li>
+          <li>Sparklines</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 12px;">Depict a part-to-whole relationship</td>
+      <td style="border: 1px solid #ddd; padding: 12px;">
+        <ul>          	
+          <li>Pie/donut charts</li>
+          <li>Stacked bar charts</li>
+          <li>Stacked area charts</li>
+          <li>Tree maps</li>
+          <li>Unit/waffle charts</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 12px;">Show deviation from a reference point</td>
+      <td style="border: 1px solid #ddd; padding: 12px;">
+        <ul>          	
+          <li>Bubble charts</li>
+          <li>Heatmaps</li>
+          <li>Scatterplots</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 12px;">Show the distribution of values</td>
+      <td style="border: 1px solid #ddd; padding: 12px;">
+        <ul>          	
+          <li>Beeswarm charts</li>
+          <li>Box and whisker plots</li>
+          <li>Fan/confidence interval plots</li>
+          <li>Histograms</li>
+          <li>Strip charts</li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+  </table>
+```
+
+:::
+
+# Tools
+
+**Which tools can I use to create publication-ready graphics?**
+
+```{=html}
+<table>
+  <thead>
+    <tr style="background-color: #f9f9f9; font-weight: bold;">
+      <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Tool</th>
+      <th style="border: 1px solid #ddd; padding: 12px; text-align: left">Supports graphs?</th>
+      <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Supports tables?</th>
+      <th style="border: 1px solid #ddd; padding: 12px; text-align: left; ">Supports maps?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 12px;">Datawrapper</td>
+      <td style="border: 1px solid #ddd; padding: 12px;">&#10003;</td>
+      <td style="border: 1px solid #ddd; padding: 12px;">&#10003;</td>
+      <td style="border: 1px solid #ddd; padding: 12px;">&#10003;</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 12px;">Excel</td>
+      <td style="border: 1px solid #ddd; padding: 12px;">&#10003;</td>
+      <td style="border: 1px solid #ddd; padding: 12px;">&#10007;</td>
+      <td style="border: 1px solid #ddd; padding: 12px;">&#10003;</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 12px;">R</td>
+      <td style="border: 1px solid #ddd; padding: 12px;">&#10003;</td>
+      <td style="border: 1px solid #ddd; padding: 12px;">&#10003;</td>
+      <td style="border: 1px solid #ddd; padding: 12px;">&#10007;</td>
+    </tr>
+  </tbody>
+</table>
+
+```
 
 ## Datawrapper
 
-Datawrapper is an online, browser-based tool that enables users to create interactive and responsive charts and choropleth maps. Sensitive data or data with PII should not be used. [Here's](https://www.datawrapper.de/blog/chart-types-guide) an overview of chart types supported in Datawrapper.
+Datawrapper is an online, browser-based tool that enables users to create interactive and responsive charts, tables, and choropleth maps. Sensitive data or data with PII should not be used. [Here's](https://www.datawrapper.de/blog/chart-types-guide) an overview of chart types supported in Datawrapper.
 
-Datawrapper graphs are appropriate for web-only publications like blogs and features. **Datawrapper graphs cannot be used in print or pdf publications.** Contact Lillian Hunter to have graphs made with TPC styling.
+Datawrapper graphs are appropriate for web-only publications like blogs and features. Contact tpc-analysts to have Datawrapper graphs made with TPC styling for blog posts, social media, or other online uses.
 
 ## Excel
 
-Excel is one of two tools for creating publication-ready TPC graphs.
+**Graphs**: TPC's Excel add-in creates publication-ready TPC Graphs. Graphs are sized to match the main dimensions in TPC publications (approximately 6.75" wide or 720 px in Excel.) The main dimensions for TPC publications is approximately 6.75" wide or 720px in Excel. Because Excel's chart title and subtitle fields are limiting in terms of formatting, we use a regular text box for all the text at the top of the graphic, as well as the source and notes text at the bottom. We also include a TPC logo in the upper-right corner of the figure so that TPC's brand travels with the chart when members of the media or other viewers copy and paste it into their stories. If you use the add-in tool, the logo and chart parts will automatically size properly. **DO NOT RESIZE CHARTS.** 
 
-The main content well on TPC publications is approximately 6.75" wide or 720px in Excel. Because Excel's chart title and subtitle fields are limiting in terms of formatting, we use a regular text box for all the text at the top of the graphic, as well as the source and notes text at the bottom. We also include a TPC logo in the upper-right corner of the figure so that when media members copy-paste our charts into their stories, TPC's brand is on them. If you use the add-in tool, the logo and chart parts will automatically size properly.
 
-**DO NOT RESIZE CHARTS.**
-
-### Tips
-
-- The TPC graphing style add-in formats charts to a width of 6.75", so it is important to keep the data density as high as possible. Always include a text reference to your figure to give the data context to the content of the report/brief/blog post. If your chart has only two or three values, consider a couple sentences of text to explain the figure.
-
-- If you find your explanatory sentences do a better job of distilling the information, you might want to consider going without a chart.
-
-- **Title:** Keep it short and simple. Try to explain the chart in a few words. If you need to add qualifiers (e.g., years, dollars) or further clarification, use a subtitle. For bonus credit: consider writing a title that ["works as a headline"](https://policyviz.com/2018/04/12/three-ways-to-annotate-your-graphs/#google_vignette) and conveys the main point the reader should take away from the graph.
-
-- **Source and Notes:** This is where the technical information about methodology can go. Try to avoid putting this information in the title, labels, or on the chart.
-
-- **Legends:** Stretch legends across the top of the chart, or to the right. Order them in a logical way, mirroring the order of the data in the charts.
-
-### Graphs for Web
+#### Graphs for Web
 
 ![](img/web_figure_specs.png)
 
-### Graphs for Print
+#### Graphs for Print
 
 ![](img/print_figure_specs.png)
 
+**Tables**: Tables can be formatted manually in Excel to match the example tables provided in TPC's [publication templates](publications.qmd#templates)
+
 ## R
 
-`tpcthemes` is a set of utilities for creating TPC–themed plots and maps in R. In addition to ggplot styling, the package contains tools for wrangling common TPC datasets. The package is in development.
-
-The package makes ggplot2 output align more closely with this style guide, but it does not produce publication-ready graphics. Visual styles must still be edited using your project's normal editing workflow. Exporting charts as PDFs rather than image files (e.g., PNG, JPEG) will allow them to be edited more easily.
-
-Run the following code to install or update tpcthemes:
+`tpcthemes` is a set of utilites designed to layer over `urbnthemes` and `urbnmapr` to create static, TPC-themed plots and maps in R. `tpcthemes` is in development. 
 
 ```r
 install.packages("remotes")
@@ -85,8 +218,11 @@ remotes::install_github("ui-research/tpcthemes")
 
 You must have Github credentials configured in your R environment in order to access this package.
 
+`datawRappr` can also be used to create interactive Datawrapper figures, maps, and tables using R. 
 
 ---
+
+
 
 # Examples
 
