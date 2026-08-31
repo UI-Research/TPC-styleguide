@@ -1,6 +1,5 @@
 ---
 title: "Publications"
-subtitle: "Tax Policy Center Data Visualization Style Guide"
 
 twitter:
   card: "summary"

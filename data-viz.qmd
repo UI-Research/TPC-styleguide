@@ -14,6 +14,19 @@ og:
   description: "This site contains guidelines that are in line with data visualization best practices and proven design principles."
 ---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,         # Show code in the output document
+  warning = FALSE,     # Hide warnings from execution
+  message = FALSE,     # Hide messages/loading text
+  fig.width = 8,       # Default width for plots (inches)
+  fig.height = 6,      # Default height for plots (inches)
+  fig.format = "png",
+  dpi = 300,
+  cache = TRUE         # Enable caching for faster rendering
+)
+```
+
 ::::: {.callout-warning collapse=true}
 ## STOP! - Required Font Setup
 
@@ -230,14 +243,14 @@ The following examples use the styles and colors to illustrate common chart type
 
 ## Bar and Column Charts
 
-### When to Use a Bar or Column Chart
+**When to Use a Bar or Column Chart**
 
 - For mostly one variable
 - To compare numerical values for different observations
 - To show relative amounts
 - To break one numerical variable out into different subgroups with grouped or stacked bars or columns
 
-### Style Tips
+**Style Tips**
 
 - Avoid 3D bars or columns
 - The y-axis should start at zero ([there are a few instances when it is okay](http://qz.com/418083/its-ok-not-to-start-your-y-axis-at-zero/))
@@ -248,74 +261,15 @@ The following examples use the styles and colors to illustrate common chart type
 - Legends should be stretched across the top of the chart and the order should match the order in the chart
 - Sequential series should be shaded from lightest to darkest for easy comparison
 
-### Column Chart Examples
+### Single column chart
 
-::: {.panel-tabset}
-
-#### R
-
-```{r column-1}
-#| message: FALSE
-#| warning: FALSE
-#| fig-width: 10
-#| fig-height: 6
-#| fig-format: png
-#| dpi: 100
-library(ggplot2)
-library(dplyr)
-library(tpcthemes)
-library(extrafont)
-invisible(capture.output(avenir_import()))
-extrafont::loadfonts(device = "win", quiet = TRUE)
-# Create data frame
-tax_data <- data.frame(
-  Income = c("$0–$24,600", 
-             "$24,600–$45,300", 
-             "$45,300–$66,400", 
-             "$66,400–$97,500",
-             "$97,500 and above",
-             "$1,453,100 and above"),
-  TaxRate = c(1.9, 7.0, 11.2, 15.2, 23.4, 29.0)
-)
-
-# Convert Income to factor to preserve order
-tax_data$Income <- factor(tax_data$Income, levels = tax_data$Income)
-
-# Create column chart with TPC styling
-ggplot(tax_data, aes(x = Income, y = TaxRate)) +
-  geom_col(fill = "#174a7c", width = 0.7) +
-  labs(
-    title = "Average Federal Tax Rates",
-    subtitle = "All households, 2011, including income, payroll, corporate, and excise taxes",
-    caption = "Source: Tax Policy Center",
-    y = NULL
-  ) +
-  scale_y_continuous(labels = scales::percent_format(scale = 1),
-                      limits = c(0, 30),
-                     expand = expansion(mult = c(0, 0.02), add = c(0, 0))) +
-  scale_x_discrete(labels = stringr::str_wrap(tax_data$Income, width = 6, whitespace_only = FALSE)) +
-  tpc_theme() +
-  theme(axis.text.x = element_text(lineheight = 0.8, margin = margin(t = 5)))
-```
-
-#### Excel
-
-![](img/column1.png)
-
-:::
+Shown with direct labels (preferable) and a y-axis
 
 ::: {.panel-tabset}
 
 #### R
 
 ```{r column-2}
-#| message: FALSE
-#| warning: FALSE
-#| fig-width: 10
-#| fig-height: 6
-#| fig-format: png
-#| dpi: 300
-library(ggplot2)
 library(dplyr)
 library(tpcthemes)
 
@@ -357,190 +311,64 @@ ggplot(tax_data, aes(x = Income, y = TaxRate)) +
         axis.ticks.y = element_blank())
 ```
 
-#### Excel
-
-![](img/column2.png)
-
-:::
-
-**Notes about these charts:**
-
-- Columns on the right in the "Top 10 percent" are a lighter sequential shade to differentiate them from the quintiles
-- The "All" category is shaded gray to create visual contrast from the rest of the columns
-- The right chart uses direct data labels above the bars for easier reading
-
-::: {.panel-tabset}
-
-#### R
-
-```{r column-chart}
-#| message: FALSE
-#| warning: FALSE
-#| fig-width: 10
-#| fig-height: 6
-#| fig-format: png
-#| dpi: 300
-library(ggplot2)
-library(tibble)
-library(tpcthemes)
-
-extrafont::loadfonts(device = "win", quiet = TRUE)
-
-# Create dataset with blank space
-data <- tribble(
-  ~category, ~value, ~color_group,
-  "Lowest quintile", -9.8, "Dark",
-  "Second quintile", -19.1, "Dark",
-  "Middle quintile", -11.6, "Dark",
-  "Fourth quintile", -8.4, "Dark",
-  "Top quintile", -9.1, "Dark",
-  "All", -9.4, "Dark",
-  "", NA, NA,  # Blank space
-  "Top 10 percent", -9.5, "Light",
-  "Top 5 percent", -10.4, "Light",
-  "Top 1 percent", -13.4, "Light",
-  "Top 0.5 percent", -13.9, "Light",
-  "Top 0.1 percent", -13.7, "Light"
-)
-
-# Convert category to factor to preserve order
-data$category <- factor(data$category, levels = data$category)
-
-# Define custom colors
-colors <- c("Dark" = "#174a7c", "Light" = "#b0d0db")
-
-# Create bar chart
-ggplot(data, aes(x = category, y = value, fill = color_group)) +
-  geom_bar(stat = "identity", na.rm = TRUE) +
-  scale_fill_manual(values = colors, na.translate = FALSE) +
-  labs(
-    title = "Combined Effect of the 2001–06 Tax Cuts",
-    subtitle = "Average percent federal tax change by cash income percentile, 2010",
-    x = NULL,
-    y = NULL,
-    caption = "Source: Urban-Brookings Tax Policy Center Microsimulation Model (version 1006-1)"
-  ) +
-  tpc_theme() + 
-  scale_x_discrete(position = "top",
-                   labels = function(x) stringr::str_wrap(x, width = 10, whitespace_only = FALSE)) +
-  scale_y_continuous(labels = scales::percent_format(scale = 1), 
-                     expand = expansion(mult = 0, add = 0)) +
-  theme(legend.position = "none",
-        axis.ticks.x = element_blank()) 
-```
-
-#### Excel
-
-![](img/column-chart.png)
-
-:::
-
-::: {.panel-tabset}
-
-#### Excel
-
-![](img/conditional-formatting.png)
-
-:::
-
-::: {.panel-tabset}
-
-#### R
-
-```{r grouped-column-3}
-#| message: FALSE
-#| warning: FALSE
-#| fig-width: 10
-#| fig-height: 6
-#| fig-format: png
-#| dpi: 300
+```{r column-1}
 
 library(ggplot2)
 library(dplyr)
 library(tpcthemes)
-
+library(extrafont)
+invisible(capture.output(avenir_import()))
 extrafont::loadfonts(device = "win", quiet = TRUE)
+# Create data frame
+tax_data <- data.frame(
+  Income = c("$0–$24,600", 
+             "$24,600–$45,300", 
+             "$45,300–$66,400", 
+             "$66,400–$97,500",
+             "$97,500 and above",
+             "$1,453,100 and above"),
+  TaxRate = c(1.9, 7.0, 11.2, 15.2, 23.4, 29.0)
+)
 
-# Data
-data <- data.frame(
-  quintile = factor(c("Lowest Quintile", "Second Quintile", "Middle Quintile", 
-                      "Fourth Quintile", "Top Quintile"),
-                    levels = c("Lowest Quintile", "Second Quintile", "Middle Quintile", 
-                               "Fourth Quintile", "Top Quintile")),
-  current_law = c(6, 12, 17.9, 20.5, 26.4),
-  obama = c(-1.9, 8.2, 15.7, 18.9, 27.2),
-  mccain = c(5.9, 11.7, 17.4, 19.5, 24.3)
-  ) %>%
-  tidyr::pivot_longer(cols = -quintile, names_to = "scenario", values_to = "value") %>%
-  mutate(scenario = case_when(
-    scenario == "current_law" ~ "Current Law",
-    scenario == "obama" ~ "Obama",
-    scenario == "mccain" ~ "McCain"
-  ),
-  scenario = factor(scenario, levels = c("Current Law", "Obama", "McCain")))
-# Define custom colors
-colors <- c("Current Law" = "#bcbec0",  # light grey
-            "Obama" = "#174a7c",         # dark blue
-            "McCain" = "#f0573e")        # poppy
+# Convert Income to factor to preserve order
+tax_data$Income <- factor(tax_data$Income, levels = tax_data$Income)
 
-# Create chart
-ggplot(data, aes(x = quintile, y = value, fill = scenario)) +
-  geom_col(position = "dodge") +
-  geom_hline(yintercept = 0, color = "black", size = 0.5, ) + # suppress x-axis line and add a horizontal line at y = 0
-  scale_fill_manual(values = colors) +
-  scale_y_continuous(breaks = seq(-5,30,5),
-                     limits = c(-5,30)) +
-  tpc_theme() +
+# Create column chart with TPC styling
+ggplot(tax_data, aes(x = Income, y = TaxRate)) +
+  geom_col(fill = "#174a7c", width = 0.7) +
   labs(
-    title = "Impact of Candidates' Tax Proposals on Workers",
-    subtitle = "Average federal tax rate by income percentile, 2009",
-    x = NULL,
-    y = NULL,
-    caption = "Source: Urban-Brookings Tax Policy Center Microsimulation Model (version 0308-6).",
-    fill = "Scenario"
+    title = "Average Federal Tax Rates",
+    subtitle = "All households, 2011, including income, payroll, corporate, and excise taxes",
+    caption = "Source: Tax Policy Center",
+    y = NULL
   ) +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1),
-        axis.ticks.x = element_blank(),
-        axis.line.x = element_blank())
+  scale_y_continuous(labels = scales::percent_format(scale = 1),
+                      limits = c(0, 30),
+                     expand = expansion(mult = c(0, 0.02), add = c(0, 0))) +
+  scale_x_discrete(labels = stringr::str_wrap(tax_data$Income, width = 6, whitespace_only = FALSE)) +
+  tpc_theme() +
+  theme(axis.text.x = element_text(lineheight = 0.8, margin = margin(t = 5)))
 ```
 
 #### Excel
 
-![](img/grouped-column-3.png)
+![](img/column2.png)
 
-::: 
+![](img/column1.png)
 
-**Notes about this chart:**
+#### Datawrapper
 
-- When dealing with political comparisons, lean on the identifiable colors of the parties. Red colors are generally associated with Republicans and blues are generally associated with Democrats
-- When working on a chart that has political categories, be sure to use a nonpolitical color for baseline or unaffiliated series (in this case, "current law")
+:::
 
-## Bar Charts
-
-### When to Use a Bar Chart
-
-- To show the trend in one variable, usually across a number of categories
-- To show multiple variables with multiple bars (if they are on the same scale)
-- To show the same variable for multiple observations with multiple lines
-
-### Style Tips
-
-- The y-axis should start at zero ([there are a few instances when it is okay](http://qz.com/418083/its-ok-not-to-start-your-y-axis-at-zero/))
-- Axis labels should always be horizontal. If you have long labels, consider making a horizontal bar chart instead of a column chart
-- When using a horizontal bar chart, right-align the category labels and center them vertically with respect to the bar
-- Try to avoid vertical grid lines. Instead, directly label each bar
+### Bar chart (horizontal)
 
 ::: {.panel-tabset}
 
 #### R
 
 ```{r bar-chart}
-#| message: FALSE
-#| warning: FALSE
 #| fig-width: 10
 #| fig-height: 10
-#| fig-format: png
-#| dpi: 300
 
 library(ggplot2)
 library(dplyr)
@@ -604,19 +432,478 @@ ggplot(data, aes(x = country, y = tax_rate, fill = category)) +
 - United States is highlighted using the Poppy color
 - OECD-Total is differentiated by using a darker shade of the primary bar color
 
-## Area and Stacked Column Charts
 
-### When to Use an Area Chart
+### Single Column Chart with Contrast color
 
-- To show the trend in composition of a group over time
-- To display the part-to-whole relationship of categories, as well as totals
+**Notes about these charts:**
 
-### When to Use a Stacked Column Chart
+- Columns on the right in the "Top 10 percent" are a lighter sequential shade to differentiate them from the quintiles
+- The "All" category is shaded gray to create visual contrast from the rest of the columns
+- The right chart uses direct data labels above the bars for easier reading
+
+::: {.panel-tabset}
+
+#### R
+
+```{r column-chart}
+#| fig-width: 10
+#| fig-height: 6
+
+library(ggplot2)
+library(tibble)
+library(tpcthemes)
+
+extrafont::loadfonts(device = "win", quiet = TRUE)
+
+# Create dataset with blank space
+data <- tribble(
+  ~category, ~value, ~color_group,
+  "Lowest quintile", -9.8, "Dark",
+  "Second quintile", -19.1, "Dark",
+  "Middle quintile", -11.6, "Dark",
+  "Fourth quintile", -8.4, "Dark",
+  "Top quintile", -9.1, "Dark",
+  "All", -9.4, "Grey",
+  "", NA, NA,  # Blank space
+  "Top 10 percent", -9.5, "Light",
+  "Top 5 percent", -10.4, "Light",
+  "Top 1 percent", -13.4, "Light",
+  "Top 0.5 percent", -13.9, "Light",
+  "Top 0.1 percent", -13.7, "Light"
+)
+
+# Convert category to factor to preserve order
+data$category <- factor(data$category, levels = data$category)
+
+# Define custom colors
+colors <- c("Dark" = "#174a7c", "Light" = "#b0d0db", "Grey" = "#bcbec0")
+
+# Create bar chart
+ggplot(data, aes(x = category, y = value, fill = color_group)) +
+  geom_bar(stat = "identity", na.rm = TRUE) +
+  scale_fill_manual(values = colors, na.translate = FALSE) +
+  labs(
+    title = "Combined Effect of the 2001–06 Tax Cuts",
+    subtitle = "Average percent federal tax change by cash income percentile, 2010",
+    x = NULL,
+    y = NULL,
+    caption = "Source: Urban-Brookings Tax Policy Center Microsimulation Model (version 1006-1)"
+  ) +
+  tpc_theme() + 
+  scale_x_discrete(position = "top",
+                   labels = function(x) stringr::str_wrap(x, width = 10, whitespace_only = FALSE)) +
+  scale_y_continuous(labels = scales::percent_format(scale = 1), 
+                     expand = expansion(mult = 0, add = 0)) +
+  theme(legend.position = "none",
+        axis.ticks.x = element_blank()) 
+```
+
+#### Excel
+
+![](img/column-chart.png)
+
+:::
+
+### Grouped column chart
+
+::: {.panel-tabset}
+
+#### R
+
+```{r grouped-column-3}
+#| fig-width: 10
+
+
+library(ggplot2)
+library(dplyr)
+library(tpcthemes)
+
+extrafont::loadfonts(device = "win", quiet = TRUE)
+
+# Data
+data <- data.frame(
+  quintile = factor(c("Lowest Quintile", "Second Quintile", "Middle Quintile", 
+                      "Fourth Quintile", "Top Quintile"),
+                    levels = c("Lowest Quintile", "Second Quintile", "Middle Quintile", 
+                               "Fourth Quintile", "Top Quintile")),
+  current_law = c(6, 12, 17.9, 20.5, 26.4),
+  obama = c(-1.9, 8.2, 15.7, 18.9, 27.2),
+  mccain = c(5.9, 11.7, 17.4, 19.5, 24.3)
+  ) %>%
+  tidyr::pivot_longer(cols = -quintile, names_to = "scenario", values_to = "value") %>%
+  mutate(scenario = case_when(
+    scenario == "current_law" ~ "Current Law",
+    scenario == "obama" ~ "Obama",
+    scenario == "mccain" ~ "McCain"
+  ),
+  scenario = factor(scenario, levels = c("Current Law", "Obama", "McCain")))
+# Define custom colors
+colors <- c("Current Law" = "#bcbec0",  # light grey
+            "Obama" = "#174a7c",         # dark blue
+            "McCain" = "#f0573e")        # poppy
+
+# Create chart
+ggplot(data, aes(x = quintile, y = value, fill = scenario)) +
+  geom_col(position = "dodge") +
+  geom_hline(yintercept = 0, color = "black", size = 0.5, ) + # suppress x-axis line and add a horizontal line at y = 0
+  scale_fill_manual(values = colors) +
+  scale_y_continuous(breaks = seq(-5,30,5),
+                     limits = c(-5,30)) +
+  tpc_theme() +
+  labs(
+    title = "Impact of Candidates' Tax Proposals on Workers",
+    subtitle = "Average federal tax rate by income percentile, 2009",
+    x = NULL,
+    y = NULL,
+    caption = "Source: Urban-Brookings Tax Policy Center Microsimulation Model (version 0308-6).",
+    fill = "Scenario"
+  ) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        axis.ticks.x = element_blank(),
+        axis.line.x = element_blank())
+```
+
+#### Excel
+
+![](img/grouped-column-3.png)
+
+::: 
+
+**Notes about this chart:**
+
+- When dealing with political comparisons, lean on the identifiable colors of the parties. Red colors are generally associated with Republicans and blues are generally associated with Democrats
+- When working on a chart that has political categories, be sure to use a nonpolitical color for baseline or unaffiliated series (in this case, "current law")
+
+## Small Multiples
+
+### Case Study: Stacked vs Grouped Column Charts
+
+Often, when you want to show composition across several dimensions (usually time), the default choice is a stacked column chart. Though this is not a bad chart type, often a story can be better told by using a different chart.
+
+**When to Use a Stacked Column Chart**
 
 - When you want to show the composition of groups, but the data is not in a continuous time series
 - A 100 percent stacked area chart can be used when displaying composition over time
 
-### Style Tips
+**When to Use a Grouped Column Chart**
+
+- When you have a lot of groups and want to better show off a group that isn't at the bottom your stacked columns
+
+Both of the charts shown below have too many groups to be really effective as stacked **or** grouped column charts. 
+
+::: {.panel-tabset}
+
+#### R
+
+```{r stacked-column-categorical}
+#| fig-width: 10
+
+library(ggplot2) 
+library(dplyr)
+library(tidyr)
+library(tpcthemes)
+extrafont::loadfonts(device = "win", quiet = TRUE)
+ 
+# create dataframe
+income_composition <- data.frame(
+  income_bracket = c("$1 under $25,000",
+                     "$25,000 under $50,000",
+                     "$50,000 under $100,000", 
+                     "$100,000 under $500,000",
+                     "$500,000 under $1,000,000", 
+                     "$1,000,000 under $5,000,000",
+                     "$5,000,000 under $10,000,000", 
+                     "$10,000,000 or more"),
+  salaries_wages = c(0.73927727, 0.797819713, 0.758972984, 0.721077848, 0.531701787, 
+                     0.376861355, 0.190789666, 0.159875141),
+  interest_dividends = c(0.025533956, 0.01601004, 0.019287589, 0.029618833, 0.060802748, 
+                         0.082941101, 0.132491659, 0.140969151),
+  other = c(0.030099708, 0.020335165, 0.016116181, 0.021752209, 0.030421795, 
+            0.038728583, 0.040360284, 0.040055732),
+  retirement = c(0.11742145, 0.130528372, 0.166143997, 0.117725659, 0.042411385, 
+                 0.031257655, 0.00960259, 0.006638),
+  business_income = c(0.086598818, 0.032384335, 0.032981361, 0.083935307, 0.231632087, 
+                      0.273865478, 0.184940527, 0.170038303),
+  capital_gains = c(0.001068798, 0.002922375, 0.006497888, 0.025890144, 0.103030198, 
+                    0.196345828, 0.441815275, 0.482423672)
+) %>%
+  tidyr::pivot_longer(cols = -income_bracket, names_to = "series", values_to = "value") %>%
+  mutate(series = stringr::str_replace_all(series, "salaries_wages", "Salaries and wages"),
+          series = stringr::str_replace_all(series, "interest_dividends", "Interest and dividends"),
+          series = stringr::str_replace_all(series, "other", "Other"),
+         series = stringr::str_replace_all(series, "retirement", "Retirement"),
+         series = stringr::str_replace_all(series, "business_income", "Business income"),
+         series = stringr::str_replace_all(series, "capital_gains", "Capital gains")) %>%
+  mutate(series = factor(series, levels = c("Capital gains", "Business income", "Retirement", "Other", "Interest and dividends", "Salaries and wages"))) %>%
+  mutate(income_bracket = factor(income_bracket, levels = c("$1 under $25,000", "$25,000 under $50,000", "$50,000 under $100,000", 
+                     "$100,000 under $500,000", "$500,000 under $1,000,000", 
+                     "$1,000,000 under $5,000,000", "$5,000,000 under $10,000,000", 
+                     "$10,000,000 or more"))) %>%
+  group_by(income_bracket) 
+
+
+# dodged column chart
+ggplot(income_composition) +
+  geom_col(aes(x = income_bracket, y = value, fill = series), position = "stack") + 
+  scale_y_continuous(labels = scales::percent_format(),
+                     breaks = seq(0,1,0.25),
+                     expand = expansion(mult = c(0, 0.05))) +
+  labs(
+    title = "This is the Title and Highlights the Key Takeaway of the Chart",
+    subtitle = "This is the subtitle and explains the chart",
+    x = NULL,
+    y = NULL,
+    caption = "Source: Source information goes here."
+  ) +
+  tpc_theme() + 
+  theme(legend.position = "right",
+        legend.direction = "vertical",
+        axis.text.y = element_text(family = "Avenir TPC", size = 10, margin = margin(r=10)),
+        plot.margin=unit(c(5.5,5.5,5.5,10), "pt")) +
+  scale_fill_manual(values = c("Salaries and wages" = "#174a7c",
+                               "Interest and dividends" = "#f0573e",
+                               "Other" = "#fcb64b",
+                               "Retirement" = "#008bb0",
+                               "Business income" = "#bcbec0",
+                               "Capital gains" = "#000000")) +
+scale_x_discrete(expand = expansion(mult = c(0.01, 0.01)),
+                  labels = function(x) stringr::str_wrap(x, width = 10)) 
+
+```
+
+```{r grouped-column-categorical}
+#| fig-width: 10
+
+library(ggplot2) 
+library(dplyr)
+library(tidyr)
+library(tpcthemes)
+extrafont::loadfonts(device = "win", quiet = TRUE)
+ 
+# create dataframe
+income_composition <- data.frame(
+  income_bracket = c("$1 under $25,000",
+                     "$25,000 under $50,000",
+                     "$50,000 under $100,000", 
+                     "$100,000 under $500,000",
+                     "$500,000 under $1,000,000", 
+                     "$1,000,000 under $5,000,000",
+                     "$5,000,000 under $10,000,000", 
+                     "$10,000,000 or more"),
+  salaries_wages = c(0.73927727, 0.797819713, 0.758972984, 0.721077848, 0.531701787, 
+                     0.376861355, 0.190789666, 0.159875141),
+  interest_dividends = c(0.025533956, 0.01601004, 0.019287589, 0.029618833, 0.060802748, 
+                         0.082941101, 0.132491659, 0.140969151),
+  other = c(0.030099708, 0.020335165, 0.016116181, 0.021752209, 0.030421795, 
+            0.038728583, 0.040360284, 0.040055732),
+  retirement = c(0.11742145, 0.130528372, 0.166143997, 0.117725659, 0.042411385, 
+                 0.031257655, 0.00960259, 0.006638),
+  business_income = c(0.086598818, 0.032384335, 0.032981361, 0.083935307, 0.231632087, 
+                      0.273865478, 0.184940527, 0.170038303),
+  capital_gains = c(0.001068798, 0.002922375, 0.006497888, 0.025890144, 0.103030198, 
+                    0.196345828, 0.441815275, 0.482423672)
+) %>%
+  tidyr::pivot_longer(cols = -income_bracket, names_to = "series", values_to = "value") %>%
+  mutate(series = stringr::str_replace_all(series, "salaries_wages", "Salaries and wages"),
+          series = stringr::str_replace_all(series, "interest_dividends", "Interest and dividends"),
+          series = stringr::str_replace_all(series, "other", "Other"),
+         series = stringr::str_replace_all(series, "retirement", "Retirement"),
+         series = stringr::str_replace_all(series, "business_income", "Business income"),
+         series = stringr::str_replace_all(series, "capital_gains", "Capital gains")) %>%
+  mutate(series = factor(series, levels = c("Salaries and wages", "Interest and dividends", "Other", "Retirement", "Business income", "Capital gains")),
+         income_bracket = factor(income_bracket, levels = c("$1 under $25,000", "$25,000 under $50,000", "$50,000 under $100,000", 
+                     "$100,000 under $500,000", "$500,000 under $1,000,000", 
+                     "$1,000,000 under $5,000,000", "$5,000,000 under $10,000,000", 
+                     "$10,000,000 or more"))) %>%
+  group_by(income_bracket) 
+
+
+# dodged column chart
+ggplot(income_composition) +
+  geom_col(aes(x = income_bracket, y = value, fill = series), position = "dodge") + 
+  scale_y_continuous(labels = scales::percent_format(),
+                     breaks = seq(0,1,0.25),
+                     expand = expansion(mult = c(0, 0.05))) +
+  labs(
+    title = "This is the Title and Highlights the Key Takeaway of the Chart",
+    subtitle = "This is the subtitle and explains the chart",
+    x = NULL,
+    y = NULL,
+    caption = "Source: Source information goes here."
+  ) +
+  tpc_theme() + 
+ theme(axis.text.y = element_text(family = "Avenir TPC", size = 10, margin = margin(r=10)),
+        plot.margin=unit(c(5.5,5.5,5.5,10), "pt")) +
+  scale_fill_manual(values = c("Salaries and wages" = "#174a7c",
+                               "Interest and dividends" = "#f0573e",
+                               "Other" = "#fcb64b",
+                               "Retirement" = "#008bb0",
+                               "Business income" = "#bcbec0",
+                               "Capital gains" = "#000000")) +
+  scale_x_discrete(expand = expansion(mult = c(0.01, 0.01)),
+                  labels = function(x) stringr::str_wrap(x, width = 10)) 
+```
+
+#### Excel 
+
+![](img/stacked-column-categorical.png)
+
+![](img/grouped-column-categorical.png)
+
+:::
+
+### Small Multiples
+
+A small multiples chart that shows individual graphs for either 1) the income group or 2) the income source is a better option in this case.
+
+::: {.panel-tabset}
+
+#### R
+
+```{r small-multiples-column}
+#| fig-width: 10
+#| fig-height: 10
+#| out-width: "85%"
+#| fig-align: center
+library(ggplot2) 
+library(dplyr)
+library(tidyr)
+library(tpcthemes)
+extrafont::loadfonts(device = "win", quiet = TRUE)
+ 
+# create dataframe
+income_composition <- data.frame(
+  income_bracket = c("$1 under $25,000",
+                     "$25,000 under $50,000",
+                     "$50,000 under $100,000", 
+                     "$100,000 under $500,000",
+                     "$500,000 under $1,000,000", 
+                     "$1,000,000 under $5,000,000",
+                     "$5,000,000 under $10,000,000", 
+                     "$10,000,000 or more"),
+  salaries_wages = c(0.73927727, 0.797819713, 0.758972984, 0.721077848, 0.531701787, 
+                     0.376861355, 0.190789666, 0.159875141),
+  interest_dividends = c(0.025533956, 0.01601004, 0.019287589, 0.029618833, 0.060802748, 
+                         0.082941101, 0.132491659, 0.140969151),
+  other = c(0.030099708, 0.020335165, 0.016116181, 0.021752209, 0.030421795, 
+            0.038728583, 0.040360284, 0.040055732),
+  retirement = c(0.11742145, 0.130528372, 0.166143997, 0.117725659, 0.042411385, 
+                 0.031257655, 0.00960259, 0.006638),
+  business_income = c(0.086598818, 0.032384335, 0.032981361, 0.083935307, 0.231632087, 
+                      0.273865478, 0.184940527, 0.170038303),
+  capital_gains = c(0.001068798, 0.002922375, 0.006497888, 0.025890144, 0.103030198, 
+                    0.196345828, 0.441815275, 0.482423672)
+) %>%
+  tidyr::pivot_longer(cols = -income_bracket, names_to = "series", values_to = "value") %>%
+  mutate(series = stringr::str_replace_all(series, "salaries_wages", "Salaries and wages"),
+          series = stringr::str_replace_all(series, "interest_dividends", "Interest and dividends"),
+          series = stringr::str_replace_all(series, "other", "Other"),
+         series = stringr::str_replace_all(series, "retirement", "Retirement"),
+         series = stringr::str_replace_all(series, "business_income", "Business income"),
+         series = stringr::str_replace_all(series, "capital_gains", "Capital gains")) %>%
+  mutate(series = factor(series, levels = c("Salaries and wages", "Interest and dividends", "Other", "Retirement", "Business income", "Capital gains")),
+         income_bracket = factor(income_bracket, levels = c("$1 under $25,000", "$25,000 under $50,000", "$50,000 under $100,000", 
+                     "$100,000 under $500,000", "$500,000 under $1,000,000", 
+                     "$1,000,000 under $5,000,000", "$5,000,000 under $10,000,000", 
+                     "$10,000,000 or more"))) %>%
+  group_by(income_bracket) 
+
+
+# facet by income bracket
+ggplot(income_composition) +
+  geom_col(aes(x = income_bracket, y = value, fill = series), position = "dodge") + 
+  scale_y_continuous(labels = scales::percent_format(),
+                     breaks = seq(0,1,0.25),
+                     expand = expansion(mult = c(0, 0.05))) +
+  labs(
+    title = "This is the Title and Highlights the Key Takeaway of the Chart",
+    subtitle = "This is the subtitle and explains the chart",
+    x = NULL,
+    y = NULL,
+    caption = "Source: Source information goes here."
+  ) +
+  tpc_theme() + 
+ theme(axis.text.y = element_text(family = "Avenir TPC", size = 10, margin = margin(r=10)),
+        plot.margin=unit(c(5.5,5.5,5.5,10), "pt")) +
+  scale_fill_manual(values = c("Salaries and wages" = "#174a7c",
+                               "Interest and dividends" = "#f0573e",
+                               "Other" = "#fcb64b",
+                               "Retirement" = "#008bb0",
+                               "Business income" = "#bcbec0",
+                               "Capital gains" = "#000000")) +
+  scale_x_discrete(expand = expansion(mult = c(0.01, 0.01)),
+                  labels = function(x) stringr::str_wrap(x, width = 10)) +
+  facet_wrap(~series, ncol = 2) +
+  theme(
+    strip.text = element_text(size = 10),
+    axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1, margin = margin(t = 6)),
+    axis.ticks.x = element_blank(),
+    plot.margin = margin(t = 5.5, r = 5.5, b = 24, l = 5.5, unit = "pt")
+  )
+```
+
+```{r small-multiples-column-2}
+#| fig-width: 10
+#| fig-height: 8
+#| out-width: "85%"
+#| fig-align: center
+ggplot(income_composition) +
+  geom_col(aes(x = series, y = value, fill = series, group = income_bracket), position = "dodge") + 
+  scale_y_continuous(labels = scales::percent_format(),
+                     breaks = seq(0,1,0.25),
+                     expand = expansion(mult = c(0, 0.05))) +
+  labs(
+    title = "This is the Title and Highlights the Key Takeaway of the Chart",
+    subtitle = "This is the subtitle and explains the chart",
+    x = NULL,
+    y = NULL,
+    caption = "Source: Source information goes here."
+  ) +
+  tpc_theme() + 
+ theme(axis.text.y = element_text(family = "Avenir TPC", size = 10, margin = margin(r=10)),
+        plot.margin=unit(c(5.5,5.5,5.5,10), "pt")) +
+  scale_fill_manual(values = c("Salaries and wages" = "#174a7c",
+                               "Interest and dividends" = "#f0573e",
+                               "Other" = "#fcb64b",
+                               "Retirement" = "#008bb0",
+                               "Business income" = "#bcbec0",
+                               "Capital gains" = "#000000")) +
+  scale_x_discrete(
+    expand = expansion(mult = c(0.01, 0.01)),
+    labels = function(x) stringr::str_wrap(x, width = 10)
+  ) +
+  facet_wrap(~income_bracket, ncol = 2) +
+  theme(
+    strip.text = element_text(size = 10),
+    axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1, margin = margin(t = 6)),
+    axis.ticks.x = element_blank(),
+    plot.margin = margin(t = 5.5, r = 5.5, b = 24, l = 5.5, unit = "pt")
+  ) 
+```
+
+:::
+
+## Sparklines/bars
+
+### Single column chart with contrasat color
+
+::: {.panel-tabset}
+
+#### Excel
+
+![](img/conditional-formatting.png)
+
+:::
+
+
+## Area Charts
+
+**When to Use an Area Chart**
+
+- To show the trend in composition of a group over time
+- To display the part-to-whole relationship of categories, as well as totals
+
+**Style Tips**
 
 - The y-axis should always start at zero
 - When possible, directly label series. If they are too small, use a legend
@@ -923,197 +1210,7 @@ ggplot(revenue_long, aes(x = year, y = value, fill = category)) +
 - In the excel example, the x-axis is starting to get a little cramped. To free up some space, consider labeling fewer years.
 - The legend is positioned to the right of the chart in a vertical layout. The order matches the order of the data in the columns
 
-### Case Study: Alternative to a Stacked Column Chart
 
-Often, when you want to show composition across several dimensions (usually time), the default choice is a stacked column chart. Though this is not a bad chart type, often a story can be better told by using a different chart.
-
-::: {.panel-tabset}
-
-#### R
-
-```{r stacked-column-categorical}
-#| message: FALSE
-#| warning: FALSE
-#| fig-width: 10
-#| fig-height: 6
-#| fig-format: png
-#| dpi: 300
-library(ggplot2) 
-library(dplyr)
-library(tidyr)
-library(tpcthemes)
-extrafont::loadfonts(device = "win", quiet = TRUE)
- 
-# create dataframe
-income_composition <- data.frame(
-  income_bracket = c("$1 under $25,000",
-                     "$25,000 under $50,000",
-                     "$50,000 under $100,000", 
-                     "$100,000 under $500,000",
-                     "$500,000 under $1,000,000", 
-                     "$1,000,000 under $5,000,000",
-                     "$5,000,000 under $10,000,000", 
-                     "$10,000,000 or more"),
-  salaries_wages = c(0.73927727, 0.797819713, 0.758972984, 0.721077848, 0.531701787, 
-                     0.376861355, 0.190789666, 0.159875141),
-  interest_dividends = c(0.025533956, 0.01601004, 0.019287589, 0.029618833, 0.060802748, 
-                         0.082941101, 0.132491659, 0.140969151),
-  other = c(0.030099708, 0.020335165, 0.016116181, 0.021752209, 0.030421795, 
-            0.038728583, 0.040360284, 0.040055732),
-  retirement = c(0.11742145, 0.130528372, 0.166143997, 0.117725659, 0.042411385, 
-                 0.031257655, 0.00960259, 0.006638),
-  business_income = c(0.086598818, 0.032384335, 0.032981361, 0.083935307, 0.231632087, 
-                      0.273865478, 0.184940527, 0.170038303),
-  capital_gains = c(0.001068798, 0.002922375, 0.006497888, 0.025890144, 0.103030198, 
-                    0.196345828, 0.441815275, 0.482423672)
-) %>%
-  tidyr::pivot_longer(cols = -income_bracket, names_to = "series", values_to = "value") %>%
-  mutate(series = stringr::str_replace_all(series, "salaries_wages", "Salaries and wages"),
-          series = stringr::str_replace_all(series, "interest_dividends", "Interest and dividends"),
-          series = stringr::str_replace_all(series, "other", "Other"),
-         series = stringr::str_replace_all(series, "retirement", "Retirement"),
-         series = stringr::str_replace_all(series, "business_income", "Business income"),
-         series = stringr::str_replace_all(series, "capital_gains", "Capital gains")) %>%
-  mutate(series = factor(series, levels = c("Capital gains", "Business income", "Retirement", "Other", "Interest and dividends", "Salaries and wages"))) %>%
-  mutate(income_bracket = factor(income_bracket, levels = c("$1 under $25,000", "$25,000 under $50,000", "$50,000 under $100,000", 
-                     "$100,000 under $500,000", "$500,000 under $1,000,000", 
-                     "$1,000,000 under $5,000,000", "$5,000,000 under $10,000,000", 
-                     "$10,000,000 or more"))) %>%
-  group_by(income_bracket) 
-
-
-# dodged column chart
-ggplot(income_composition) +
-  geom_col(aes(x = income_bracket, y = value, fill = series), position = "stack") + 
-  scale_y_continuous(labels = scales::percent_format(),
-                     breaks = seq(0,1,0.25),
-                     expand = expansion(mult = c(0, 0.05))) +
-  labs(
-    title = "This is the Title and Highlights the Key Takeaway of the Chart",
-    subtitle = "This is the subtitle and explains the chart",
-    x = NULL,
-    y = NULL,
-    caption = "Source: Source information goes here."
-  ) +
-  tpc_theme() + 
-  theme(legend.position = "right",
-        legend.direction = "vertical",
-        axis.text.y = element_text(family = "Avenir TPC", size = 10, margin = margin(r=10)),
-        plot.margin=unit(c(5.5,5.5,5.5,10), "pt")) +
-  scale_fill_manual(values = c("Salaries and wages" = "#174a7c",
-                               "Interest and dividends" = "#f0573e",
-                               "Other" = "#fcb64b",
-                               "Retirement" = "#008bb0",
-                               "Business income" = "#bcbec0",
-                               "Capital gains" = "#000000")) +
-scale_x_discrete(expand = expansion(mult = c(0.01, 0.01)),
-                  labels = function(x) stringr::str_wrap(x, width = 10)) 
-
-```
-
-#### Excel 
-
-![](img/stacked-column-categorical.png)
-
-:::
-
-**Notes about this chart:**
-
-- It is hard to see change in the middle series because of the shifting height of the salaries and wages bars
-- Because some series are too small to directly label them, a legend is necessary
-
-**Grouped Column Chart Alternative**
-
-::: {.panel-tabset}
-
-#### R
-```{r grouped-column-categorical}
-#| message: FALSE
-#| warning: FALSE
-#| fig-width: 10
-#| fig-height: 6
-#| fig-format: png
-#| dpi: 300
-library(ggplot2) 
-library(dplyr)
-library(tidyr)
-library(tpcthemes)
-extrafont::loadfonts(device = "win", quiet = TRUE)
- 
-# create dataframe
-income_composition <- data.frame(
-  income_bracket = c("$1 under $25,000",
-                     "$25,000 under $50,000",
-                     "$50,000 under $100,000", 
-                     "$100,000 under $500,000",
-                     "$500,000 under $1,000,000", 
-                     "$1,000,000 under $5,000,000",
-                     "$5,000,000 under $10,000,000", 
-                     "$10,000,000 or more"),
-  salaries_wages = c(0.73927727, 0.797819713, 0.758972984, 0.721077848, 0.531701787, 
-                     0.376861355, 0.190789666, 0.159875141),
-  interest_dividends = c(0.025533956, 0.01601004, 0.019287589, 0.029618833, 0.060802748, 
-                         0.082941101, 0.132491659, 0.140969151),
-  other = c(0.030099708, 0.020335165, 0.016116181, 0.021752209, 0.030421795, 
-            0.038728583, 0.040360284, 0.040055732),
-  retirement = c(0.11742145, 0.130528372, 0.166143997, 0.117725659, 0.042411385, 
-                 0.031257655, 0.00960259, 0.006638),
-  business_income = c(0.086598818, 0.032384335, 0.032981361, 0.083935307, 0.231632087, 
-                      0.273865478, 0.184940527, 0.170038303),
-  capital_gains = c(0.001068798, 0.002922375, 0.006497888, 0.025890144, 0.103030198, 
-                    0.196345828, 0.441815275, 0.482423672)
-) %>%
-  tidyr::pivot_longer(cols = -income_bracket, names_to = "series", values_to = "value") %>%
-  mutate(series = stringr::str_replace_all(series, "salaries_wages", "Salaries and wages"),
-          series = stringr::str_replace_all(series, "interest_dividends", "Interest and dividends"),
-          series = stringr::str_replace_all(series, "other", "Other"),
-         series = stringr::str_replace_all(series, "retirement", "Retirement"),
-         series = stringr::str_replace_all(series, "business_income", "Business income"),
-         series = stringr::str_replace_all(series, "capital_gains", "Capital gains")) %>%
-  mutate(series = factor(series, levels = c("Salaries and wages", "Interest and dividends", "Other", "Retirement", "Business income", "Capital gains")),
-         income_bracket = factor(income_bracket, levels = c("$1 under $25,000", "$25,000 under $50,000", "$50,000 under $100,000", 
-                     "$100,000 under $500,000", "$500,000 under $1,000,000", 
-                     "$1,000,000 under $5,000,000", "$5,000,000 under $10,000,000", 
-                     "$10,000,000 or more"))) %>%
-  group_by(income_bracket) 
-
-
-# dodged column chart
-ggplot(income_composition) +
-  geom_col(aes(x = income_bracket, y = value, fill = series), position = "dodge") + 
-  scale_y_continuous(labels = scales::percent_format(),
-                     breaks = seq(0,1,0.25),
-                     expand = expansion(mult = c(0, 0.05))) +
-  labs(
-    title = "This is the Title and Highlights the Key Takeaway of the Chart",
-    subtitle = "This is the subtitle and explains the chart",
-    x = NULL,
-    y = NULL,
-    caption = "Source: Source information goes here."
-  ) +
-  tpc_theme() + 
- theme(axis.text.y = element_text(family = "Avenir TPC", size = 10, margin = margin(r=10)),
-        plot.margin=unit(c(5.5,5.5,5.5,10), "pt")) +
-  scale_fill_manual(values = c("Salaries and wages" = "#174a7c",
-                               "Interest and dividends" = "#f0573e",
-                               "Other" = "#fcb64b",
-                               "Retirement" = "#008bb0",
-                               "Business income" = "#bcbec0",
-                               "Capital gains" = "#000000")) +
-  scale_x_discrete(expand = expansion(mult = c(0.01, 0.01)),
-                  labels = function(x) stringr::str_wrap(x, width = 10)) 
-```
-
-#### Excel
-
-![](img/grouped-column-categorical.png)
-
-:::
-
-**Notes about this chart:**
-
-- This version makes it easier to see the change in individual series across categories
-- It is also easier to compare series within the same category, allowing a better visual understanding of the part-to-whole relationship
 
 ### Small Multiples Area Charts
 
@@ -1216,13 +1313,13 @@ Contrast this with Excel, where it's possible to make area charts using discrete
 
 ## Line Charts
 
-### When to Use a Line Chart
+**When to Use a Line Chart**
 
 - To show the trend in one variable, usually over time
 - To show multiple variables with multiple lines (if they are on the same scale)
 - To show the same variable for multiple observations with multiple lines
 
-### Style Tips
+**Style Tips**
 
 - The y-axis should always start at zero
 - When possible, directly label series. If too close together, use a legend
@@ -1380,13 +1477,11 @@ ggplot(data, aes(x = year, y = value)) +
 
 ## Pie and Distribution Charts
 
-### When to Use a Pie Chart
+**When to Use a Pie Chart**
 
 - Use them sparingly. Often a bar or column chart is better
 - Use pie charts when you want to show the relative relationship between two or three things
 - When they add up to 100 percent
-
-### On the Use of Pie Charts
 
 ::::: {.callout-warning}
 ## Cautions about Pie Charts
