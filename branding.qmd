@@ -505,13 +505,13 @@ The following color combinations are intended to take some of the guess work out
 </table>
 ```
 
-**Option 3: Divergent**
+**Option 3: Diverging**
 
 ```{=html}
 <table style="width: 100%; border-collapse: collapse;">
 <tr>
-<td style="background-color: #F0573E; color: white; padding: 20px; text-align: center; font-weight: bold; border: 1px solid #ddd; width: 16.6%;">Poppy (1/5)<br>#F0573E</td>
-<td style="background-color: #FF8C79; color: black; padding: 20px; text-align: center; font-weight: bold; border: 1px solid #ddd; width: 16.6%;">Poppy<br>#FF8C79</td>
+<td style="background-color: #F0573E; color: white; padding: 20px; text-align: center; font-weight: bold; border: 1px solid #ddd; width: 16.6%;">Poppy<br>#F0573E</td>
+<td style="background-color: #FF8C79; color: black; padding: 20px; text-align: center; font-weight: bold; border: 1px solid #ddd; width: 16.6%;">Poppy (4/5)<br>#FF8C79</td>
 <td style="background-color: #FFCDC4; color: black; padding: 20px; text-align: center; font-weight: bold; border: 1px solid #ddd; width: 16.6%;">Poppy (5/5)<br>#FFCDC4</td>
 <td style="background-color: #b0d0db; color: black; padding: 20px; text-align: center; font-weight: bold; border: 1px solid #ddd; width: 16.6%;">Teal (1/3)<br>#b0d0db</td>
 <td style="background-color: #75adc0; color: white; padding: 20px; text-align: center; font-weight: bold; border: 1px solid #ddd; width: 16.6%;">Teal (2/3)<br>#75adc0</td>
@@ -524,3 +524,19 @@ The following color combinations are intended to take some of the guess work out
 
 **Consider consolidating categories or breaking up the chart. Seven groups is really too many.**
 
+### Diverging (Eight Groups)
+
+```{=html}
+<table style="width: 100%; border-collapse: collapse;">
+<tr>
+<td style="background-color: #6D342A; color: white; padding: 20px; text-align: center; font-weight: bold; border: 1px solid #ddd; width: 25%;">Poppy (4/4)<br>#6D342A</td>
+<td style="background-color: #F0573E; color: white; padding: 20px; text-align: center; font-weight: bold; border: 1px solid #ddd; width: 25%;">Poppy<br>#F0573E</td>
+<td style="background-color: #FF8C79; color: white; padding: 20px; text-align: center; font-weight: bold; border: 1px solid #ddd; width: 25%;">Poppy (2/4)<br>#FF8C79</td>
+<td style="background-color: #FFCDC4; color: black; padding: 20px; text-align: center; font-weight: bold; border: 1px solid #ddd; width: 25%;">Poppy (1/4)<br>#FFCDC4</td>
+<td style="background-color: #b0d0db; color: black; padding: 20px; text-align: center; font-weight: bold; border: 1px solid #ddd; width: 25%;">Teal (1/4)<br>#b0d0db</td>
+<td style="background-color: #75adc0; color: white; padding: 20px; text-align: center; font-weight: bold; border: 1px solid #ddd; width: 25%;">Teal (2/4)<br>#75adc0</td>
+<td style="background-color: #008bb0; color: white; padding: 20px; text-align: center; font-weight: bold; border: 1px solid #ddd; width: 25%;">Teal<br>#008bb0</td>
+<td style="background-color: #1d5669; color: white; padding: 20px; text-align: center; font-weight: bold; border: 1px solid #ddd; width: 25%;">Teal (4/4)<br>#1d5669</td>
+</tr>
+</table>
+```
