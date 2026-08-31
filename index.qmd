@@ -1,0 +1,30 @@
+---
+title: "Tax Policy Center Style Guide"
+subtitle: "Guidelines for creating uniform, professional publications and data visualizations"
+author: "Urban Institute"
+date: today
+
+twitter:
+  card: "summary"
+  site: "@urbaninstitute"
+  creator: "@urbaninstitute"
+  title: "Tax Policy Center Style Guide"
+  description: "Guidelines for creating professional publications and data visualizations aligned with best practices"
+
+og:
+  title: "Tax Policy Center Style Guide"
+  description: "This site contains guidelines that are in line with best practices and proven design principles for publications and data visualizations."
+---
+
+
+Use this data visualization style guide to create a uniform look and feel to all of Tax Policy Center's charts and graphs. This site contains guidelines that are in line with data visualization best practices and proven design principles. Sticking to these templates eliminates the burden of making decisions about data viz and allows our researchers to focus on the substance of our work. 
+
+Use the navigation bar above to find what you need:
+
+- **[Branding](branding.qmd)**: Required font setup, typography guidelines (typefaces, sizes, and cases for chart elements), and TPC's color palette and selection principles (categorical and sequential color schemes for one through seven or more groups).
+- **[Publications](publications.qmd)**: Word templates for briefs, fact sheets, research reports, and business documents, plus Excel graphing resources, the PowerPoint template, and mapping resources.
+- **[Data Viz](data-viz.qmd)**:
+   - Guidance on graphing and mapping tools (Datawrapper, Excel, R)
+   - Guidance on TPC tables
+   - Examples of common visualization types with style tips and templates
+- **[Editorial](https://explorer.urban.org/page/2232)**: Urban's editorial style guide

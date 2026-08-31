@@ -1,0 +1,31 @@
+project:
+  type: website
+
+website:
+  title: "Tax Policy Center Style Guide"
+  navbar:
+    logo: favicon.ico
+    left:
+      - text: "Branding"
+        href: branding.qmd
+      - text: "Publications"
+        href: publications.qmd
+      - text: "Data Viz"
+        href: data-viz.qmd
+      - text: 'Editorial <i class="bi bi-box-arrow-up-right"></i>'
+        href: https://explorer.urban.org/page/2232
+        target: _blank
+
+format:
+  html:
+    theme: default
+    toc: true
+    toc-depth: 3
+    toc-expand: 2
+    toc-location: left
+    number-sections: FALSE
+    smooth-scroll: true
+    css: styles.css
+    page-layout: full
+    code-fold: true
+    embed-resources: true
