@@ -311,6 +311,7 @@ The following color combinations are intended to take some of the guess work out
 <td style="background-color: #FFCDC4; color: black; padding: 20px; text-align: center; font-weight: bold; border: 1px solid #ddd; width: 33.33%;">Poppy (5/5)<br>#FFCDC4</td>
 </tr>
 </table>
+```
 
 ### Four Groups (Categorical)
 
