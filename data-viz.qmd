@@ -198,6 +198,12 @@ To ensure Datawrapper figures meeting TPC formatting guidelines, please consult 
 
 ![](img/web_figure_specs.png)
 
+```{=html}
+<p>
+<iframe title="Default Title Case" aria-label="Line chart" id="datawrapper-chart-aKLTM" src="https://datawrapper.dwcdn.net/aKLTM/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="490" data-external="1"></iframe><script type="text/javascript">(function(){function e(){window.addEventListener(`message`,function(e){if(e.data[`datawrapper-height`]!==void 0){var t=document.querySelectorAll(`iframe`);for(var n in e.data[`datawrapper-height`])for(var r=0,i;i=t[r];r++)if(i.contentWindow===e.source){var a=e.data[`datawrapper-height`][n]+`px`;i.style.height=a}}})}e()})();</script>
+</p>
+```
+
 #### Graphs for Print
 
 ![](img/print_figure_specs.png)
